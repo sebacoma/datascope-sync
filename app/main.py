@@ -34,6 +34,11 @@ def health():
     logger.info("💚 [HEALTH] Health check solicitado")
     return {"ok": True}
 
+@app.get("/ping")
+def ping():
+    logger.info("🏓 [PING] Ping recibido")
+    return {"message": "pong", "timestamp": datetime.now().isoformat()}
+
 @app.post("/webhook/sheets")
 async def webhook_sheets(payload: SheetPayload, request: Request, x_webhook_token: str | None = Header(default=None)):
     # Obtener información del cliente
